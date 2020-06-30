@@ -74,7 +74,7 @@ Services.prototype.getQueueId = function(queueName) {
 					this.settings.queues[queueName] = data.value[0].Id;
 					fulfill();
 				} catch(err) {
-					reject("Malformed response: Cannot get queue dewfinition for " + queueName);
+					reject("Malformed response: Cannot get queue definition for " + queueName);
 				}
 			}
 		}.bind(this));
