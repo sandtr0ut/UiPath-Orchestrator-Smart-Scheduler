@@ -1,0 +1,69 @@
+{
+	"services": [
+		{
+			"queueName": "Leads",
+			"processName": "processLeads",
+			"environmentName": "all",
+			"maxRobots": 2
+		},
+		{
+			"queueName": "KYC",
+			"processName": "processKYC",
+			"environmentName": "all",
+			"maxRobots": 4
+		}
+	],
+	"queueLinks": [
+		{
+			"input": [
+				"Leads"
+			],
+			"output": [
+				"Prospects",
+				"KYC"
+			]
+		},
+		{
+			"input": [
+				"Prospects",
+				"KYC"
+			],
+			"output": [
+				"Customers"
+			]
+		}
+	],
+	"processLinks": [
+		{
+			"input": {
+				"processName": "Step1",
+				"environmentName": "all"
+			},
+			"output": [
+				{
+					"processName": "Step2",
+					"environmentName": "all"
+				}
+			]
+		}
+	],
+	"processRetries": [
+		{
+			"processName": "PayInvoice",
+			"environmentName": "all",
+			"retries": 3
+		}
+	],
+	"connection": {
+		"tenancyName": "Default",           
+		"usernameOrEmailAddress": "api",
+		"password": "*******",               
+		"hostname": "platform.uipath.com", 
+		"isSecure": true,                
+		"port": 443, 
+		"invalidCertificate": false, 
+		"connectionPool": 5 
+	},
+	"refreshInterval": 3600,
+	"secretKey": "YOUR_ORCHESTRATOR_WEBHOOKS_SECRET_KEY_HERE"
+}
